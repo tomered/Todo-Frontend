@@ -1,9 +1,33 @@
-import React from 'react'
+import { Box, Button, Checkbox, SxProps, Typography } from "@mui/material";
+import React from "react";
+import { COLORS } from "../../../colors";
 
-export default function ListItem() {
+const removeButtonSx = {
+  bgcolor: COLORS.RED_BUTTON,
+  textTransform: "none",
+  "&:hover": {
+    backgroundColor: COLORS.RED_BUTTON_HOVER,
+  },
+};
+
+interface ListItemProps {
+  description: string;
+  removeButtonExtraSx?: any;
+}
+
+export default function ListItem({
+  description,
+  removeButtonExtraSx = {},
+}: ListItemProps) {
   return (
-    <div>
-      list item
-    </div>
-  )
+    <Box sx={{ display: "flex", flex: 1, alignItems: "center" }}>
+      <Checkbox />
+      <Typography sx={{ display: "flex", width: "100%" }}>
+        {description}
+      </Typography>
+      <Button variant="contained" sx={{...removeButtonSx, ...removeButtonExtraSx}}>
+        remove
+      </Button>
+    </Box>
+  );
 }
