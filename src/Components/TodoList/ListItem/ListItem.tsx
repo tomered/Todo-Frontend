@@ -1,5 +1,6 @@
 import { Box, Button, Checkbox, Typography } from "@mui/material";
 import React from "react";
+import { COLORS } from "../../../colors";
 
 interface ListItemProps {
   description: string;
@@ -15,10 +16,10 @@ export default function ListItem({ description }: ListItemProps) {
       <Button
         variant="contained"
         sx={{
-          bgcolor: "red",
+          bgcolor: COLORS.RED_BUTTON,
           textTransform: "none",
           "&:hover": {
-            backgroundColor: "#8c1c03",
+            backgroundColor: COLORS.RED_BUTTON_HOVER,
           },
         }}
       >
