@@ -1,9 +1,10 @@
 import React from "react";
 import ListItem, { ListItemProps } from "./ListItem/ListItem";
 import { Box, Divider } from "@mui/material";
+import { TodoTask } from "../../types";
 
 interface TodoListProps {
-  items: ListItemProps[];
+  items: TodoTask[];
 }
 
 export default function TodoList({
@@ -11,8 +12,14 @@ export default function TodoList({
 }: TodoListProps) {
   return (
     <Box sx={{ width: "30vw" }}>
-      {items.map((todo) => (
-        <><Divider /><ListItem description={todo.description} /></>
+      {items.map((todoTask) => (
+        <>
+          <Divider />
+          <ListItem
+            description={todoTask.description}
+            removeButtonClickHandler={() => console.log(todoTask)}
+          />
+        </>
       ))}
     </Box>
   );
