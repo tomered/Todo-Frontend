@@ -1,35 +1,32 @@
 import { Box, Button, Checkbox, SxProps, Typography } from "@mui/material";
 import React from "react";
 import { COLORS } from "../../../colors";
+import AppButton from "../../Buttons/AppButton";
 
-const removeButtonSx = {
-  bgcolor: COLORS.RED_BUTTON,
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: COLORS.RED_BUTTON_HOVER,
-  },
-};
 
 export interface ListItemProps {
   description: string;
   removeButtonExtraSx?: any;
-  removeButtonClickHandler: () => void
+  removeButtonClickHandler: () => void;
 }
 
 export default function ListItem({
   description,
   removeButtonExtraSx = {},
-  removeButtonClickHandler = () => {}
+  removeButtonClickHandler = () => {},
 }: ListItemProps) {
   return (
-    <Box sx={{ display: "flex", flex: 1, alignItems: "center" , margin: 1}}>
+    <Box sx={{ display: "flex", flex: 1, alignItems: "center", margin: 1 }}>
       <Checkbox />
       <Typography sx={{ display: "flex", width: "100%" }}>
         {description}
       </Typography>
-      <Button variant="contained" sx={{...removeButtonSx, ...removeButtonExtraSx}} onClick={removeButtonClickHandler}>
+      <AppButton
+        extraSx={{...removeButtonExtraSx}}
+        onClick={removeButtonClickHandler}
+      >
         remove
-      </Button>
+      </AppButton>
     </Box>
   );
 }

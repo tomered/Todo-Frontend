@@ -4,14 +4,14 @@ import { Box, Divider } from "@mui/material";
 import { TodoTask } from "../../types";
 
 interface TodoListProps {
-  items: TodoTask[];
+  items?: TodoTask[];
 }
 
 export default function TodoList({
   items = [{ description: "feed my dog" }, { description: "finish homework" }],
 }: TodoListProps) {
   return (
-    <Box sx={{ width: "30vw" }}>
+    <Box sx={{ width: "100%" }}>
       {items.map((todoTask) => (
         <>
           <Divider />

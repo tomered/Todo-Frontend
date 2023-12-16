@@ -9,6 +9,7 @@ import {
 import React, { useRef, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { COLORS } from "../../../colors";
+import AppButton from "../../Buttons/AppButton";
 
 export default function TodoListText() {
   const [description, setDescription] = useState("");
@@ -17,9 +18,9 @@ export default function TodoListText() {
     setDescription(event.target.value);
   };
   return (
-    <Box sx={{ display: "flex", width: "30vw" }}>
-      <FormControl sx={{ width: "100%", marginRight: 2 }}>
-        <OutlinedInput
+    <Box sx={{ display: "flex", flex: 1, margin: 1 , height: '6vh'}}>
+      <FormControl sx={{ display: "flex", flex: 1, marginRight: 1 }}>
+        <OutlinedInput sx={{height: '6vh'}}
           placeholder="Add something to do.."
           value={description}
           type="text"
@@ -28,11 +29,11 @@ export default function TodoListText() {
           onChange={handleChange}
         />
       </FormControl>
-      <Button
-        sx={{
+      <AppButton
+        extraSx={{
           bgcolor: COLORS.ADD_BUTTON_BG,
           color: COLORS.ADD_BUTTON,
-          borderRadius: 1,
+          //   borderRadius: 1,
           "&:hover": {
             backgroundColor: COLORS.ADD_BUTTON_HOVER,
           },
@@ -44,7 +45,7 @@ export default function TodoListText() {
         }}
       >
         <AddIcon />
-      </Button>
+      </AppButton>
     </Box>
   );
 }
