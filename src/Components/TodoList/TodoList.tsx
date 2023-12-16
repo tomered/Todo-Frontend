@@ -1,13 +1,19 @@
 import React from "react";
-import ListItem from "./ListItem/ListItem";
-import { Box } from "@mui/material";
+import ListItem, { ListItemProps } from "./ListItem/ListItem";
+import { Box, Divider } from "@mui/material";
 
-export default function TodoList() {
+interface TodoListProps {
+  items: ListItemProps[];
+}
+
+export default function TodoList({
+  items = [{ description: "feed my dog" }, { description: "finish homework" }],
+}: TodoListProps) {
   return (
     <Box sx={{ width: "30vw" }}>
-      <ListItem description="feed my cat" />
-      <ListItem description="feed my dog" />
-      <ListItem description="feed my cat" />
+      {items.map((todo) => (
+        <><Divider /><ListItem description={todo.description} /></>
+      ))}
     </Box>
   );
 }

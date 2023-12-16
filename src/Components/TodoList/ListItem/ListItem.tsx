@@ -10,7 +10,7 @@ const removeButtonSx = {
   },
 };
 
-interface ListItemProps {
+export interface ListItemProps {
   description: string;
   removeButtonExtraSx?: any;
 }
@@ -20,7 +20,7 @@ export default function ListItem({
   removeButtonExtraSx = {},
 }: ListItemProps) {
   return (
-    <Box sx={{ display: "flex", flex: 1, alignItems: "center" }}>
+    <Box sx={{ display: "flex", flex: 1, alignItems: "center" , margin: 1}}>
       <Checkbox />
       <Typography sx={{ display: "flex", width: "100%" }}>
         {description}
