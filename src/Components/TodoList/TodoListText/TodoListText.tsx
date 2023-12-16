@@ -13,7 +13,7 @@ import { COLORS } from "../../../colors";
 export default function TodoListText() {
   const [description, setDescription] = useState("");
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(event.target.value);
   };
   return (
