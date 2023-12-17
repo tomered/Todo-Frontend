@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import { COLORS } from "./colors.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
