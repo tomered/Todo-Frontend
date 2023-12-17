@@ -40,11 +40,11 @@ export default function TodoListText() {
           onChange={handleChange}
         />
       </FormControl>
-      <Button
-        sx={{
+      <AppButton
+        extraSx={{
           bgcolor: COLORS.ADD_BUTTON_BG,
           color: COLORS.ADD_BUTTON,
-          borderRadius: 1,
+          //   borderRadius: 1,
           "&:hover": {
             backgroundColor: COLORS.ADD_BUTTON_HOVER,
           },
@@ -53,7 +53,7 @@ export default function TodoListText() {
         onClick={handleClick}
       >
         <AddIcon />
-      </Button>
+      </AppButton>
     </Box>
   );
 }

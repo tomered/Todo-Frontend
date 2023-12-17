@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { removeTodoItem } from "../../redux/slices/todoList.slice";
 
 interface TodoListProps {
-  items: TodoTask[];
+  items?: TodoTask[];
 }
 
 export default function TodoList({
