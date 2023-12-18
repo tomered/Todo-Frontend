@@ -32,7 +32,7 @@ export default function TodoListText() {
   const handleClick = async () => {
     //@ts-ignore
     // dispatch(PostTodoListItemThunk(description)).then(() => {
-    //   setDescription("");
+    setDescription("");
     //   refetch();
     // });
     postTodo(description);
