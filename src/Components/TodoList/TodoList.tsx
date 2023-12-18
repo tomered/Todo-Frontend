@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ListItem, { ListItemProps } from "./ListItem/ListItem";
 import { Box, Divider } from "@mui/material";
 import { TodoTask } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { removeTodoItem } from "../../redux/slices/todoList.slice";
+import { addTodoList, removeTodoItem } from "../../redux/slices/todoList.slice";
+import { deleteTodoItem, getTodoList } from "../../api/todo";
 
 interface TodoListProps {
   items?: TodoTask[];
@@ -15,6 +16,14 @@ export default function TodoList({
   const todoList = useAppSelector((state) => state.todoList.todoList);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    const execute = async () => {
+      const todos = (await getTodoList()).todos;
+      dispatch(addTodoList(todos));
+    };
+    execute();
+  }, []);
+
   return (
     <Box sx={{ width: "100%" }}>
       {todoList !== null &&
@@ -22,10 +31,12 @@ export default function TodoList({
           <>
             <Divider />
             <ListItem
-              description={todoTask}
-              removeButtonClickHandler={() =>
-                dispatch(removeTodoItem(todoTask))
-              }
+              todoItem={todoTask}
+              removeButtonClickHandler={async () => {
+                const response = await deleteTodoItem(todoTask.id);
+
+                dispatch(removeTodoItem(response.deletedID));
+              }}
             />
           </>
         ))}
