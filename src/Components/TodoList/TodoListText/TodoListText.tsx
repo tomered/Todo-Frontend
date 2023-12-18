@@ -13,18 +13,29 @@ import AppButton from "../../Buttons/AppButton";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodoItem } from "../../../redux/slices/todoList.slice";
 import { postTodoItem } from "../../../api/todo";
+import { PostTodoListItemThunk } from "../../../redux/actions/todoList.action";
+import { useAppSelector } from "../../../redux/hooks";
+import {
+  useGetAllTodosQuery,
+  usePostTodoMutation,
+} from "../../../redux/rtk/todoList";
 
 export default function TodoListText() {
   const [description, setDescription] = useState("");
+  // const postLoading = useAppSelector((state) => state.todoList.postLoading);
+  const { refetch } = useGetAllTodosQuery();
 
   const dispatch = useDispatch();
 
+  const [postTodo, { isLoading }] = usePostTodoMutation();
+
   const handleClick = async () => {
-    console.log(description);
-    const response = await postTodoItem(description);
-    dispatch(addTodoItem(response.added));
-    setDescription("");
-    console.log(response);
+    //@ts-ignore
+    // dispatch(PostTodoListItemThunk(description)).then(() => {
+    //   setDescription("");
+    //   refetch();
+    // });
+    postTodo(description);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +55,7 @@ export default function TodoListText() {
         />
       </FormControl>
       <AppButton
+        disabled={isLoading}
         extraSx={{
           bgcolor: COLORS.ADD_BUTTON_BG,
           color: COLORS.ADD_BUTTON,
