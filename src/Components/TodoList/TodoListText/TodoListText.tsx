@@ -12,16 +12,19 @@ import { COLORS } from "../../../colors";
 import AppButton from "../../Buttons/AppButton";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodoItem } from "../../../redux/slices/todoList.slice";
+import { postTodoItem } from "../../../api/todo";
 
 export default function TodoListText() {
   const [description, setDescription] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     console.log(description);
-    dispatch(addTodoItem(description));
+    const response = await postTodoItem(description);
+    dispatch(addTodoItem(response.added));
     setDescription("");
+    console.log(response);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

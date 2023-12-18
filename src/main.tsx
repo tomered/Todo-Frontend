@@ -7,6 +7,7 @@ import { Box } from "@mui/system";
 import { COLORS } from "./colors.ts";
 import { store } from "./redux/store.ts";
 import { Provider } from "react-redux";
+import './api/todo.ts'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

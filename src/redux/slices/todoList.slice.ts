@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface TodoListState {
-  todoList: string[] | null;
+  todoList: { description: string; id: number }[] | null;
 }
 
 const initialState: TodoListState = {
@@ -17,14 +17,18 @@ export const todoSlice = createSlice({
         ? [...state.todoList, action.payload]
         : [action.payload];
     },
-    removeTodoItem: (state, action) => {
+    addTodoList: (state, action) => {
+      state.todoList = action.payload;
+    },
+    removeTodoItem: (state, action: PayloadAction<number>) => {
       state.todoList =
-        state.todoList?.filter((todoItem) => todoItem !== action.payload) || [];
+        state.todoList?.filter((todoItem) => todoItem.id !== action.payload) ||
+        [];
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addTodoItem, removeTodoItem } = todoSlice.actions;
+export const { addTodoItem, removeTodoItem, addTodoList } = todoSlice.actions;
 
 export default todoSlice.reducer;
